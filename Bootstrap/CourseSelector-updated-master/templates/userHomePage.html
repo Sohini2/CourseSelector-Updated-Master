@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Course Selector</title>
+ <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="bootstrap/ico/favicon.ico">
+<!-- Bootstrap core CSS -->
+    <link href="bootstrap/docs/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="cover.css" rel="stylesheet">
+<script src="bootstrap/docs/assets/js/ie-emulation-modes-warning.js"></script>
+<style type="text/css">
+
+      .form-signin {
+        max-width: 800px;
+        max-height: auto;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background: #e1c192 url(../static/images/old-paper-texture.jpg);
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+           }
+
+    </style>
+
+<style type="text/css">
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
+button {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+</style>
+
+</head>
+<body>
+<div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">Course Selector</h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li class="active"><a href="{{url_for('home')}}">Home</a></li>
+                  <li><a href="{{url_for('feedback')}}">Feedback</a></li>
+                  <li><a href="{{url_for('planner')}}">Our Recommendation</a></li>
+                  <li><a href="{{url_for('logout',filename='index.html')}}">Logout </a>
+    {% endfor %}</li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+<br>
+<br>
+          <div class="inner cover">
+            <br>
+<br>
+            <form class="register form-signin"  style="overflow-y:auto;height: 500px">
+    <fieldset class="row1">
+
+
+            <div class="tab-content">
+            <div id="home" class="tab active">
+            {% for stud in studentDtls %}
+            <label class="heading1" style="width: 100%;text-align: center">Welcome {{stud.name|safe}}</label>
+
+    </fieldset>
+
+    <fieldset class="row2" >
+        <legend style="font-size: 20px">Your Profile
+        </legend>
+            <div class="form-group">
+            <label class="col-sm-3 control-label">Degree :
+            </label>
+            <div>
+            <label>{{stud.degree|safe}}
+            </label>
+            </div>
+            </div>
+            <div class="form-group">
+            <label class="col-sm-3 control-label">Major :
+            </label>
+            <div>
+            <label>{{stud.major|safe}}
+            </label>
+            </div>
+            </div>
+            <div class="form-group">
+            <label class="col-sm-3 control-label">Academic Year :
+            </label>
+            <div>
+            <label>{{stud.ay|safe}}
+            </label>
+            {% endfor %}
+            </div>
+            </div>
+            <div class="form-group">
+            <label class="col-sm-3 control-label">Interested in :</label>
+            <div>
+            {% for interest in interests %}
+            <label style="width:100px;text-align: left;">{{interest.tag|capitalize}}
+            </label>
+            {% endfor %}
+            </div>
+            </div>
+                  
+<fieldset class="row3">
+        <legend style="text-align: center;">Courses Taken
+            </legend>
+              <button type="button" id = "edit" style="float:right;padding: 10px;" value="Add course" class="btn btn-default btn-inverse">Add course</button>
+                    
+        <div class>
+            <table id="courseTable" class="table">
+
+                <thead>
+                <tr><td>Courses Name</td>
+                    <td>Semester</td>
+                    <td>Action</td>
+                </tr>
+                </thead>
+                
+                <tbody class="table-striped table-hover">
+                {% for course in courses %}
+                        <tr><td>{{course.name|safe}}</td>
+                            <td>{{course.semester|safe}}</td>
+                            <td><button type="button" class="btn btn-default deleteBtn" aria-label="Click to delete course"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </button></td>
+                        </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    
+
+    </fieldset>
+
+
+                </div>
+            </div>
+
+</form>
+
+    <!--</div>-->
+           
+          </div>
+
+         
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/docs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!--<div class="tabs">-->
+
+
+
+
+
+</body>
+
+</html>
+
+
+<script type="text/javascript">
+
+
+    function addToBox(){
+        var course = document.getElementById("courses").value
+        existingC = document.getElementById("courseSelected").value
+        //alert(existingC)
+        if (! existingC == "") {
+            if (!checkifAlreadyAdded(existingC, course)) {
+                existingC = existingC + course + "\n";
+                document.getElementById("courseSelected").value = existingC
+            }
+
+            else
+                alert("This course has been added already")
+        }else {
+            existingC = existingC + course + "\n";
+            document.getElementById("courseSelected").value = existingC
+        }
+    }
+
+    var courseName = ""
+    var courseCode = ""
+    var sem = ""
+    function addVal(obj,id,ob){
+        courseName = obj;
+        courseCode = id
+
+
+    }
+    function addValSem(obj,ob){
+        sem=obj
+
+
+    }
+    function Add() {
+
+        var t = $('#courseTable').DataTable();
+
+        t.row.add([
+                     "<select class='ccourse' id='courses' style='width: 400px;' name = 'course' onchange='addVal(this.options[this.selectedIndex].innerHTML,this.options[this.selectedIndex].id,this)'>{% for course in allcourses %}<option id='{{ course.code }}' value='{{course.name}}'>{{ course.name|safe }}</option>{% endfor %}</select>",
+                      "<select id='sem' name='semester' onchange='addValSem(this.options[this.selectedIndex].innerHTML,this)'><option value='Fall 2014' selected>Fall 2014</option><option value='Spring 2015'>Spring 2015</option></select>",
+                      "<input type = 'button' value ='Save' id='doneBtn'>"
+
+        ]).draw();
+        var i = document.getElementById("courses");
+         courseName = i.options[i.selectedIndex].value;
+         courseCode = i.options[i.selectedIndex].id;
+        var p = document.getElementById("sem");
+        sem = p.options[p.selectedIndex].value;
+       // alert(sem)
+        jQuery("#doneBtn").bind("click", Save);
+
+
+       /* jQuery("#courseTable tbody").append( "<tr>"+ "<td><select class='ccourse' id='courses' style='width: 400px;' name = 'course' onchange='addVal(this.options[this.selectedIndex].innerHTML,this.options[this.selectedIndex].id,this)'>{% for course in allcourses %}<option id='{{ course.code }}' value='{{course.name}}'>{{ course.name|safe }}</option>{% endfor %}</select></td>"+ "<td><select name='semester' onchange='addValSem(this.options[this.selectedIndex].innerHTML,this)'><option value='Fall 2014' selected>Fall 2014</option><option value='Spring 2015'>Spring 2015</option></select></td>"+ "<td><input type = 'button' value ='Save' id='doneBtn'> </td>"+ "</tr>");
+        jQuery("#doneBtn").bind("click", Save);
+        jQuery("#courses").on('change', function () {
+            alert('hi')
+            alert(jQuery(this).val());
+        });*/
+
+    }
+
+    function Delete(){
+        var par = $(this).parent().parent(); //tr
+        var cellName = $(this).parent().siblings().eq(0).text()
+        var cellID = cellName.substring(0,7)
+      //  alert(cellName +':'+ cellID)
+
+        r = confirm("Are you sure you want to remove this course?")
+        if (r) {
+        jsonObj = {code:cellID}
+        jQuery.getJSON('/homepage',jsonObj,function(data) {
+            var a  = data.msg
+            if(a == "success")
+                location.reload();
+        });
+
+
+
+           // par.remove();
+
+        }
+
+    }
+    
+    function Save(){
+
+        //alert(courseName+sem)
+        jsonObj = {courseName:courseName,semester:sem,courseCode:courseCode}
+        jQuery.getJSON('/homepage',jsonObj,function(data) {
+
+
+            var a  = data.msg
+            if(a == "success")
+            location.reload();
+        });
+
+
+    }
+
+    jQuery(function(){
+        jQuery("#edit").bind("click", Add);
+        jQuery(".deleteBtn").bind("click",Delete);
+        jQuery(".doneBtn").bind("click", Save);
+    });
+
+
+     jQuery(document).ready(function() {
+    jQuery('#courseTable').DataTable({
+        "searching" : false,
+        "lengthChange": false,
+        "pageLength": 6
+    })
+    } );
+</script>
+
+
+
+

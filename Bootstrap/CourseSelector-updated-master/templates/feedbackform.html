@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Feedback Form</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="bootstrap/ico/favicon.ico">
+<!-- Bootstrap core CSS -->
+    <link href="bootstrap/docs/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="cover.css" rel="stylesheet">
+<script src="bootstrap/docs/assets/js/ie-emulation-modes-warning.js"></script>
+<style type="text/css">
+
+      .form-signin {
+        max-width: 800px;
+        max-height: auto;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background: #e1c192 url(../static/images/old-paper-texture.jpg);
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+           }
+
+    </style>
+
+<style type="text/css">
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
+button {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+</style>
+
+
+    <link type="text/css" rel="stylesheet" href="../static/css/jquery.ratings.css" />
+    <script src="../static/js/jquery-1.3.2.min.js"></script>
+    <script src="../static/js/jquery.ratings.js"></script>
+
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <script type="text/javascript">
+
+
+        $(document).ready(function() {
+            var list = document.getElementsByTagName("tr");
+            var num = list.length;
+
+            for(var i=1;i<num;i++){
+
+                list[i].setAttribute("id","tr"+i);
+            }
+            for(var x=1;x<(num);x++) {
+                console.log(x)
+                z = 1;
+                $('#tr'+x).each(function() {
+                    $(this).find('#example-2').ratings(5).bind('ratingchanged', function (event, data) {
+                      console.log(data.rating)
+                      $('#tr'+z).find('#example-rating-2').text(data.rating);
+                      z++
+
+                    });
+                });
+
+            }
+        });
+
+    </script>
+
+</head>
+<body>
+
+<div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">Course Selector</h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li class="active"><a href="{{url_for('home')}}">Home</a></li>
+                  <li><a href="{{url_for('feedback')}}">Feedback</a></li>
+                  <li><a href="{{url_for('planner')}}">Our Recommendation</a></li>
+                  <li><a href="{{url_for('logout',filename='index.html')}}">Logout </a>
+    {% endfor %}</li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+<br>
+<br>
+          <div class="inner cover">
+            <br>
+<br>
+
+<form class="register form-signin" style="overflow-y:auto;height: 500px">
+
+
+<fieldset class="row1">
+
+    <div class ="CSSTableGenerator">
+            <table class="table">
+                <tbody class="table-striped table-hover">
+
+                <tr><td>Courses Name</td>
+                    <td>Rating</td>
+                </tr>
+
+                {% for course in courses %}
+                <tr><td>{{course.name|safe}}</td>
+
+                    <td>
+
+                        <div id="example-2"></div> <br />
+                            Your Rating: <span id="example-rating-2">not set</span>
+
+
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    </fieldset>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+
+</body>
+</html>
